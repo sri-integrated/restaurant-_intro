@@ -1,0 +1,141 @@
+:root {
+  --ink: #2a120a;
+  --bg: #e8a33d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: auto; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scroll length: ~200vh per transition */
+.track { height: 500vh; }
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- Text panels (all stacked, faded by JS) ---------- */
+.panel {
+  position: fixed;
+  left: clamp(1.5rem, 6vw, 6rem);
+  top: 50%;
+  width: min(34rem, 52vw);
+  translate: 0 -50%;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.panel h2 {
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+  margin-bottom: 1.5rem;
+}
+
+.tagline {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.9rem;
+}
+
+.desc {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 30rem;
+  margin-bottom: 1.5rem;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+
+.tags li {
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.3rem 0.95rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ---------- Side index ---------- */
+.index {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.index button {
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  opacity: 0.45;
+  cursor: pointer;
+  padding: 0.2rem 0 0.2rem 1.6rem;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+.index button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  width: 0.6rem;
+  background: var(--ink);
+  transition: width 0.3s;
+}
+
+.index button.is-active { opacity: 1; font-weight: 800; }
+.index button.is-active::before { width: 1.3rem; }
+.index button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  font-size: 1.5rem;
+  font-weight: 500;
+  transition: opacity 0.6s;
+}
+.loader.is-done { opacity: 0; pointer-events: none; }
+
+/* ---------- Mobile: model on top, text at the bottom ---------- */
+@media (max-width: 820px) {
+  .panel {
+    left: 1.25rem;
+    right: 1.25rem;
+    width: auto;
+    top: auto;
+    bottom: 1.5rem;
+    translate: 0 0;
+  }
+  .panel h2 { font-size: 4rem; margin-bottom: 0.7rem; }
+  .desc { font-size: 0.95rem; margin-bottom: 1rem; }
+  .index { display: none; }
+}

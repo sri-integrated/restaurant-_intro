@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Burger, Donut, Pizza</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="loader" id="loader">Warming up the oven…</div>
+
+  <nav class="index" aria-label="Menu sections">
+    <button data-go="0" class="is-active">Burger</button>
+    <button data-go="1">Donut</button>
+    <button data-go="2">Pizza</button>
+  </nav>
+
+  <main>
+    <section class="panel" data-index="0">
+      <h2>Burger combo</h2>
+      <p class="tagline">Charred edges, melting centre.</p>
+      <p class="desc">A flame-seared patty drops into a pillow-soft brioche bun. Smoke and salt land first, then melted cheddar, sharp pickle and sweet tomato keep every bite bright.</p>
+      <ul class="tags"><li>Smoky</li><li>Juicy</li><li>Tangy</li></ul>
+    </section>
+
+    <section class="panel" data-index="1">
+      <h2>coke</h2>
+      <p class="tagline">cold as , glossy as candy.</p>
+      <p class="desc">Light dough fried to a pale gold, wrapped in a strawberry glaze that cracks gently before it melts on your tongue. Sweet, but never heavy.</p>
+      <ul class="tags"><li>Sweet</li><li>Fluffy</li><li>Glazed</li></ul>
+    </section>
+
+    <section class="panel" data-index="2">
+      <h2>Pizza</h2>
+      <p class="tagline">Blistered crust, bubbling cheese.</p>
+      <p class="desc">Slow-risen dough with a chewy bite and leopard-spotted edge, under bright tomato, stretchy mozzarella and a handful of fresh basil.</p>
+      <ul class="tags"><li>Savoury</li><li>Stretchy</li><li>Herby</li></ul>
+    </section>
+  </main>
+
+  <!-- Gives the page its scroll length -->
+  <div class="track"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
